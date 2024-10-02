@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="svg" sizes="32x32" href="QR logo.svg">
+    <title>QR Gen</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+
+
+                    fontFamily: {
+                        inter: ['Bricolage Grotesque', 'sans-serif'],
+                    },
+                    animation: {
+                        'gradient': 'gradient 8s linear infinite',
+                    },
+                    keyframes: {
+                        'gradient': {
+                            to: { 'background-position': '200% center' },
+                        }
+                    }
+                },
+            }
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body class="font-inter">
+    <nav class="flex justify-between items-center px-8 py-4">
+        <div class="flex gap-2">
+            <img src="QR logo.svg" alt="" class="w-[30px]">
+            <h2 class="text-xl font-normal text-gray-700">QR Gen</h2>
+        </div>
+
+        <a href="https://github.com/Fortstar09" target="_blank"><i
+                class='bx bxl-github font-bold text-gray-400 text-4xl'></i></a>
+    </nav>
+    <hr>
+    <section class="flex items-center gap-16 flex-col p-8">
+
+        <div class="py-6">
+            <h2 class="text-[55px] max-w-[500px] text-gray-500 font-normal text-center leading-none">Simply click to
+                convert your
+                links
+                to <span
+                    class=" block font-bold text-green-500 bg-clip-text text-transparent bg-[linear-gradient(to_right,theme(colors.green.300),theme(colors.green.700),theme(colors.green.400),theme(colors.green.500),theme(colors.green.400),theme(colors.green.800),theme(colors.green.400))] bg-[length:200%_auto] animate-gradient">QR
+                    codes.</span></h2>
+        </div>
+        <div class="">
+            <div action="" class="flex justify-center items-center ">
+                <div class="flex justify-center gap-4 flex-col md:flex-row items-center">
+                    <input type="text" id="data" placeholder="Enter your link or message"
+                        class="text-lg bg-gray-100 md:py-2.5 py-2 px-4 md:px-7.5 rounded-[6px] text-gray-900 w-[350px] focus:outline-none active:bg-gray-100">
+                    <!-- <button
+                        class="md:py-2.5 py-1.5 px-4 md:px-7.5 text-lg font-semibold bg-green-500 hover:bg-green-700 rounded-lg text-white"
+                        id="generate">Generate</button> -->
+                    <button
+                        class="inline-flex justify-center whitespace-nowrap rounded-lg md:py-3 py-2 px-4 md:px-7.5 text-sm font-medium text-white bg-green-500 hover:bg-green-500 hover:text-white shadow focus:outline-none focus:ring focus:ring-green-500/50 focus-visible:outline-none focus-visible:ring focus-visible:ring-green-500/50 relative before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(45deg,transparent_25%,theme(colors.white/.5)_50%,transparent_75%,transparent_100%)] before:bg-[linear-gradient(45deg,transparent_25%,theme(colors.white)_50%,transparent_75%,transparent_100%)] before:bg-[length:250%_250%,100%_100%] before:bg-[position:200%_0,0_0] before:bg-no-repeat before:[transition:background-position_0s_ease] hover:before:bg-[position:-100%_0,0_0] hover:before:duration-[1500ms]"
+                        id="generate">Generate</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-y-2 border-gray-100 flex items-center justify-center w-full h-full ">
+            <div class="my-10">
+                <img src="https://placehold.co/200x200" alt="" id="image" class="">
+            </div>
+        </div>
+        <div class="flex gap-5 justify-center items-center [&_[x-cloak]]:hidden" x-data="{ modalOpen: false }">
+
+            <a href="" download target="_blank" id="anchor"
+                class="py-3 px-8 text-lg font-semibold transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:bg-green-500 hover:text-white border border-green-500 rounded-[6px] text-gray-500">Download</a>
+            <button href="" @click="modalOpen = true" aria-controls="modal">
+                <i class='bx bx-slider py-3 px-4 text-lg bg-green-500 rounded-[6px] text-white '></i>
+            </button>
+
+
+            <!-- Modal backdrop -->
+            <div class="fixed inset-0 z-[99999] bg-black bg-opacity-50 transition-opacity" x-show="modalOpen"
+                x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100" x-transition:leave="transition ease-out duration-100"
+                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" aria-hidden="true" x-cloak>
+            </div>
+            <!-- End: Modal backdrop -->
+
+
+            <!-- Modal dialog -->
+            <div id="modal" class="fixed inset-0 z-[99999] flex px-4 md:px-6 py-6" role="dialog" aria-modal="true"
+                x-show="modalOpen" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-75" x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-out duration-200" x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-75" x-cloak>
+                <div class="max-w-5xl mx-auto h-full flex items-center">
+                    <div class="w-full max-h-full rounded-3xl shadow-2xl aspect-video bg-white"
+                        @click.outside="modalOpen = false" @keydown.escape.window="modalOpen = false">
+                        <div x-init="$watch('modalOpen', value => value ? $el.play() : $el.pause())" width="1920"
+                            height="1080">
+
+                            <div class="w-[600px] h-[300px] flex gap-16 justify-center items-center">
+                                <div>Coming Soon</div>
+                                <button @click="modalOpen = false"
+                                    class="rounded-full w-[20px] h-[20px] bg-gray-200 inline-flex justify-center items-center">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End: Modal dialog -->
+        </div>
+
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
