@@ -54,7 +54,7 @@
     <section class="flex items-center gap-16 flex-col p-8">
 
         <div class="py-6">
-            <h2 class="text-[55px] max-w-[500px] text-gray-500 font-normal text-center leading-none">Simply click to
+            <h2 class="text-[55px] max-w-[600px] text-gray-500 font-normal text-center leading-none">Simply click to
                 convert your
                 links
                 to <span
@@ -83,10 +83,11 @@
         </div>
         <div class="flex gap-5 justify-center items-center [&_[x-cloak]]:hidden" x-data="{ modalOpen: false }">
 
-            <a href="" download target="_blank" id="anchor"
+            <a href="Pepe walk.gif" download target="_blank" id="anchor"
                 class="py-3 px-8 text-lg font-semibold transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:bg-green-500 hover:text-white border border-green-500 rounded-[6px] text-gray-500">Download</a>
             <button href="" @click="modalOpen = true" aria-controls="modal">
-                <i class='bx bx-slider py-3 px-4 text-lg bg-green-500 rounded-[6px] text-white '></i>
+                <i
+                    class='bx bx-slider py-3 px-4 text-lg border border-green-500 rounded-[6px] text-green-500 hover:bg-green-500 hover:text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'></i>
             </button>
 
 
@@ -106,15 +107,49 @@
                 x-transition:leave="transition ease-out duration-200" x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-75" x-cloak>
                 <div class="max-w-5xl mx-auto h-full flex items-center">
-                    <div class="w-full max-h-full rounded-3xl shadow-2xl aspect-video bg-white"
+                    <div class="w-full max-h-full rounded shadow-2xl aspect-video bg-white"
                         @click.outside="modalOpen = false" @keydown.escape.window="modalOpen = false">
-                        <div x-init="$watch('modalOpen', value => value ? $el.play() : $el.pause())" width="1920"
-                            height="1080">
+                        <div x-init="$watch('modalOpen', value => value ? $el.play() : $el.pause())">
 
-                            <div class="w-[600px] h-[300px] flex gap-16 justify-center items-center">
-                                <div>Coming Soon</div>
-                                <button @click="modalOpen = false"
-                                    class="rounded-full w-[20px] h-[20px] bg-gray-200 inline-flex justify-center items-center">&times;</button>
+                            <div class="flex flex-col items-center py-3 md:py-6 h-[400px] w-[300px] md:w-[400px]">
+                                <div class="flex justify-between items-center px-5 md:px-10  w-full">
+                                    <h2 class=" text-lg md:text-2xl text-green-500">Customize</h2>
+                                    <button @click="modalOpen = false"
+                                        class="rounded-full w-[20px] h-[20px] bg-gray-200 inline-flex justify-center items-center">&times;</button>
+                                </div>
+                                <div class="w-full h-[1px] bg-gray-200 my-4" />
+                                <div class="flex justify-between items-center px-5 md:px-10 py-5 w-full">
+                                    <div class="flex flex-col gap-4 w-full">
+                                        <h2 class="text-base text-gray-500">Color</h2>
+                                        <div class="flex justify-between items-center w-full">
+                                            <div class="flex justify-center flex-col gap-2">
+                                                <p class="text-[12px] font-extralight text-gray-400">Foreground color
+                                                </p>
+                                                <input type="text" placeholder="FF31A2" minlength="6" maxlength="6"
+                                                    id="fgColor"
+                                                    class="text-sm bg-gray-100 md:py-2.5 py-2 px-3 md:px-7.5 rounded-[4px] text-gray-600 w-[120px] md:w-[150px] focus:outline-none active:bg-gray-100">
+                                            </div>
+                                            <div class="flex justify-center flex-col gap-2">
+                                                <p class="text-[12px] font-extralight text-gray-400">Background color
+                                                </p>
+                                                <input type="text" placeholder="3333A3" minlength="6" maxlength="6"
+                                                    id="bgColor"
+                                                    class="text-sm bg-gray-100 md:py-2.5 py-2 px-3 md:px-7.5 rounded-[4px] text-gray-600 w-[120px] md:w-[150px] focus:outline-none active:bg-gray-100">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h2 class="text-base text-gray-500 pb-2">Size</h2>
+                                            <!-- <p class="text-[12px] font-extralight text-gray-400">Enter a valid size of
+                                                your qr code
+                                            </p> -->
+                                            <input type="text" placeholder="400" minlength="3" maxlength="3" id="size"
+                                                class="text-sm bg-gray-100 md:py-2.5 py-2 px-3 md:px-7.5 rounded-[4px] text-gray-600 w-[150px] md:w-[200px] focus:outline-none active:bg-gray-100">
+                                        </div>
+                                        <button
+                                            class="inline-flex justify-center whitespace-nowrap rounded-[4px] md:rounded-lg mt-5 md:py-3 py-2 px-4 md:px-7.5 text-sm font-medium text-white bg-green-500 hover:bg-green-500 hover:text-white shadow focus:outline-none focus:ring focus:ring-green-500/50 focus-visible:outline-none focus-visible:ring focus-visible:ring-green-500/50 relative before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(45deg,transparent_25%,theme(colors.white/.5)_50%,transparent_75%,transparent_100%)] before:bg-[linear-gradient(45deg,transparent_25%,theme(colors.white)_50%,transparent_75%,transparent_100%)] before:bg-[length:250%_250%,100%_100%] before:bg-[position:200%_0,0_0] before:bg-no-repeat before:[transition:background-position_0s_ease] hover:before:bg-[position:-100%_0,0_0] hover:before:duration-[1500ms]"
+                                            id="edit" @click="modalOpen = false">Customize</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
